@@ -3,7 +3,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-name: AWS GITHUB-DOcKERHUB-EC2 Deploment
+name: AWS GITHUB-DOCKERHUB-EC2 Deployment
 jobs:
   deploy:
     name: Deploy
@@ -20,4 +20,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-         TARGET: ${{ secrets.TARGET_DIR }}
+        target: ${{ secrets.TARGET_DIR }}
