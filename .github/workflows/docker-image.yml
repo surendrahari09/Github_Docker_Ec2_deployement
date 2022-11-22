@@ -1,18 +1,23 @@
-name: Docker Image CI
-
 on:
   push:
-    branches: [ "main" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "main" ]
-
+    branches: [ master ]
+name: AWS GITHUB-DOcKERHUB-EC2 Deploment
 jobs:
-
-  build:
-
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hari:latest
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+       
+    - name:  deploy to ec2
+      uses: easingthemes/ssh-action@master
+      env:
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+         TARGET: ${ { secrets.TARGET_DIR }}
