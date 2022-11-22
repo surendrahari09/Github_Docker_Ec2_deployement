@@ -14,7 +14,7 @@ jobs:
     
        
     - name:  deploy to ec2
-      uses: easingthemes/ssh-action@master
+      uses: easingthemes/ssh-deploy@master
       env:
         host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
