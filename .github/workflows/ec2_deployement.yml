@@ -21,5 +21,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           SOURCE: "./"
           REMOTE_HOST: "ec2-35-154-94-205.ap-south-1.compute.amazonaws.com"
-          REMOTE_USER: ${{ secrets.USERNAME }}
+          REMOTE_USER: "ubuntu"
           TARGET: "/home/ubuntu/surendra"
