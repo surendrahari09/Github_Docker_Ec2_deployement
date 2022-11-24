@@ -1,6 +1,6 @@
 name: Push-to-EC2
 
-# Trigger deployment only on push to mai branch
+# Trigger deployment only on push to main branch
 on:
   push:
     branches:
@@ -11,19 +11,11 @@ jobs:
     name: Push to EC2 Instance
     runs-on: ubuntu-latest
 
+   jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v1
-
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          SOURCE: "./"
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
-          REMOTE_USER: "ubuntu"
-          TARGET: "/home/ubuntu/github-Deployements"
-          steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Login to Docker Hub
@@ -42,9 +34,27 @@ jobs:
         docker build -t $DOCKERHUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
         echo "Pushing image to DOCKERHUB..."
         docker push $DOCKERHUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
-        sudo docker pull surendrahari09/flask:2
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          sudo docker pull surendrahari09/flask:2
           #Stop container
           sudo docker stop demoapp
           #Remove all untagged images
           sudo docker system  prune -a -f
           sudo docker run -d -p 5000:5000 --name demoapp -it surendrahari09/flask:2
+          
+      - name: Deploy to my EC2 instance
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: "ubuntu"
+          TARGET: "/home/ubuntu/github-Deployements"
+        
