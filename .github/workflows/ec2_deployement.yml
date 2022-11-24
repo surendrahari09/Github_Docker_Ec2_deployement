@@ -6,11 +6,6 @@ on:
     branches:
       - main
 
-jobs:
-  deploy:
-    name: Push to EC2 Instance
-    runs-on: ubuntu-latest
-
    jobs:
   deploy:
     name: Deploy
