@@ -16,7 +16,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           SOURCE: "./"
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_HOST: ${{ secrets.HOS_DNS }}
           REMOTE_USER: "ubuntu"
           TARGET: "/home/ubuntu/github-Deployements"
         
