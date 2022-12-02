@@ -2,7 +2,7 @@ on:
   push:
     branches: [ test ]
   pull_request:
-    branches: [ test ]
+    branches: [ main , development ]
     name: Push-to-EC2
 
 jobs:
