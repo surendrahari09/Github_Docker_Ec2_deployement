@@ -1,8 +1,9 @@
 on:
   push:
-    branches: [ development ]
-  pull:
-    branches: [ main ,test ]
+  pull_request:
+    branches:
+      - development
+      - test
 name: AWS GITHUB-DOcKERHUB-EC2 Deployement
 jobs:
   deploy:
