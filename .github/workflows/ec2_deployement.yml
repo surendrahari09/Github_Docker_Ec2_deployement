@@ -1,10 +1,9 @@
 on:
   push:
-    branches: [ development ]
-  pull:
-    branches: [ main , test ]
-    name: Push-to-EC2
-
+  pull_request:
+    branches:
+      - development
+      - test
 jobs:
   deploy:
     name: Push to EC2 Instance
