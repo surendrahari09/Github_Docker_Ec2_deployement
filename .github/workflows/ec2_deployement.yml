@@ -1,6 +1,9 @@
-name: Push-to-EC2
-
-on: push
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ main , test ]
+    name: Push-to-EC2
 
 jobs:
   deploy:
