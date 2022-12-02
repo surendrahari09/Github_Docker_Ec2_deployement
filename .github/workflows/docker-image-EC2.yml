@@ -1,7 +1,7 @@
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull:
     branches: [ main ]
 name: AWS GITHUB-DOcKERHUB-EC2 Deployement
 jobs:
