@@ -4,11 +4,13 @@ on:
     - main
     - development
     - test
+    - tests
   pull_request:
     branches:
       - main
       - development
       - test
+      - tests
 jobs:
   deploy:
     name: Push to EC2 Instance
