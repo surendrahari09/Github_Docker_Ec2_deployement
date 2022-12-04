@@ -1,7 +1,11 @@
 on:
   push:
+    - main
+    - development
+    -test
   pull_request:
     branches:
+      - main
       - development
       - test
 jobs:
