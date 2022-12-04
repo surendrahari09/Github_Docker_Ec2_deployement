@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [ development ]
+    branches: [ main , development ,test ]
   pull:
-    branches: [ main , test ]
+    branches: [ main , test, development ]
     name: Push-to-EC2
 
 jobs:
