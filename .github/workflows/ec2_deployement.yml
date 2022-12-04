@@ -2,7 +2,7 @@ on:
   push:
     - main
     - development
-    -test
+    - test
   pull_request:
     branches:
       - main
