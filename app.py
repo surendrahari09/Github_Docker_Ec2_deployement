@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return jsonify({"Time of Call Home Page change Shari": time.time()})
+    return jsonify({"Time of Call Home Page change hari": time.time()})
 
 @app.route("/one")
 def one():
